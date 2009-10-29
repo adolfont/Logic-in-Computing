@@ -7,4 +7,17 @@ SPIN   http://spinroot.com/spin/whatispin.html
 
   Spin is a popular open-source software tool, used by thousands of people worldwide, that can be used for the formal verification of distributed software systems. The tool was developed at Bell Labs in the original Unix group of the Computing Sciences Research Center, starting in 1980. The software has been available freely since 1991, and continues to evolve to keep pace with new developments in the field. In April 2002 the tool was awarded the prestigious System Software Award for 2001 by the ACM. 
 
+Scrub and Spin: Stealth Use of Formal Methods in Software Development
+OOPSLA 2009
+http://www.oopsla.org/oopsla2009/program/invited-speakers/217-scrub-and-spin-stealth-use-of-formal-methods-in-software-development
+
+Gerard Holzmann, JPL Fellow / Adjunct Faculty Caltech CS
+
+Gerard J. Holzmann is Senior Research Scientist and Fellow at the Jet Propulsion Laboratory in Pasadena, California. He received his PhD in 1979 from the Delft University of Technology in The Netherlands. From 1979 to 2003, he worked in the Bell Labs Computing Science Research Center in Murray Hill, New Jersey. Since 2003 he leads the Laboratory for Reliable Software at JPL in California.
+
+Dr. Holzmann is best known for designing and building one of the most widely used formal verification systems for multi-threaded systems software: the Spin model checker, for which he was awarded the 2001 ACM Software Systems award. It may also explain his mysterious election to the National Academy of Engineering in 2005. He has published four books and numerous technical papers.
+
+There is something roundly unsatisfactory about the way in which we normally develop software systems, especially large systems. Try as we might, bugs tend to get into the development cycle and they can prove to be very hard to eliminate. We have learned to live with statistics that say that we should expect roughly one residual defect for every one thousand lines of delivered code, post testing. Meanwhile, code sizes for typical applications continue to grow. The control software for a spacecraft, for instance, has grown in the last few decades from a few thousand to a few million lines of code. Do we know any better today than thirty years ago how to write such code reliably?
+
+Although truly rigorous formal software verification techniques will probably remain out of reach for large-scale software development for a while longer, I will show that some very practical uses of formal methods have quietly reached the point where they can be used routinely. My example with be the use of two light-weight tools, Scrub and Spin, in the development of mission critical software at JPL.
 
