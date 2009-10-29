@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html><head>
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+
+
+<title>provAut</title>
+<meta name="description" content="provAut">
+<meta name="keywords" content="provAut">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="Generator" content="LaTeX2HTML v2002-2-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="index_files/labs.css">
+
+</head><body>
+
+<p>
+
+</p><p>
+
+<table style="width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td>
+
+<p>
+<a name="tex2html1" href="http://www.furb.br/">Universidade Regional de Blumenau</a>
+
+<br> <a name="tex2html2" href="http://www.furb.br/">Centro de Ciências Exatas e Naturais</a>
+
+<br> <a name="tex2html3" href="http://www.inf.furb.br/dsc">Departamento de Sistemas e Computação</a>
+<br>
+<a name="tex2html4" href="http://www.inf.furb.br/%7Ejomi/logica"><b>Lógica para Ciências da Computação</b></a>
+<br>
+<a name="tex2html5" href="http://www.inf.furb.br/%7Ejomi">Professor: Jomi Fred Hübner e Joyce Martins</a>
+<br>
+</p><p>
+
+</p></td>
+<td style="text-align: right;">
+<a href="http://www.furb.br/">
+<img style="border: 0px solid ; width: 123px; height: 76px;" alt="logo furb" src="index_files/logomarca-furb.jpg">
+</a>
+</td>
+</tr></tbody></table>
+
+</p><p>
+
+</p><p>
+
+<h0>
+        Exercício em Laboratório:
+<br><b>Prova automática</b>
+        
+        </h0>
+
+</p><p>
+
+</p><p>
+<br>
+
+</p><h2><a name="SECTION00010000000000000000">
+Sumário</a>
+</h2>
+<!--Table of Contents-->
+
+<ul>
+<li><a name="tex2html22" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00020000000000000000">1 Objetivo</a>
+</li><li><a name="tex2html23" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00030000000000000000">2 Antes de começar</a>
+</li><li><a name="tex2html24" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00040000000000000000">3 Preparação do ambiente de trabalho</a>
+<ul>
+<li><a name="tex2html25" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00041000000000000000">3.1 Instalação do Prolog</a>
+</li><li><a name="tex2html26" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00042000000000000000">3.2 Instalação da biblioteca de prova automática</a>
+</li></ul>
+<br>
+</li><li><a name="tex2html27" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00050000000000000000">4 Carga da biblioteca de lógica</a>
+</li><li><a name="tex2html28" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00060000000000000000">5 Utilitários</a>
+<ul>
+<li><a name="tex2html29" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00061000000000000000">5.1 Tabela verdade</a>
+</li><li><a name="tex2html30" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00062000000000000000">5.2 Forma Normal Conjuntiva - FNC</a>
+</li><li><a name="tex2html31" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00063000000000000000">5.3 Verificação de teorema</a>
+</li></ul>
+<br>
+</li><li><a name="tex2html32" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00070000000000000000">6 Exemplo</a>
+</li><li><a name="tex2html33" href="http://www.inf.furb.br/%7Ejomi/logica/exercicios/provAut/provAut.html#SECTION00080000000000000000">7 Exercícios</a>
+</li></ul>
+<!--End of Table of Contents-->
+<p>
+
+</p><h1><a name="SECTION00020000000000000000">
+1 Objetivo</a>
+</h1>
+
+<p>
+Iniciar o uso do ambiente Prolog e utilizar uma ferramenta de prova
+automática de teoremas.
+
+</p><p>
+
+</p><h1><a name="SECTION00030000000000000000">
+2 Antes de começar</a>
+</h1>
+
+<p>
+Este texto descreve um roteiro a ser seguido para atingir o objetivo
+acima. Contudo, você é o <b>sujeito</b> desse processo, é você que
+deve ler, compreender, realizar e avaliar o roteiro apresentado.
+Apenas ``executar'' os comandos sugeridos, não lhe acrescentará nada.
+
+</p><p>
+
+</p><h1><a name="SECTION00040000000000000000">
+3 Preparação do ambiente de trabalho</a>
+</h1>
+
+<p>
+
+</p><h2><a name="SECTION00041000000000000000">
+3.1 Instalação do Prolog</a>
+</h2>
+
+<p>
+Neste exercício será utilizado o SWI-Prolog
+(<tt><a name="tex2html6" href="http://www.swi-prolog.org/">http://www.swi-prolog.org</a></tt>). Baixe e instale este programa (nos
+laboratórios do LCI este programa já esta instalado).
+
+</p><p>
+Para chamar este programa no linux, digite em um terminal de comandos:
+</p><pre>     pl
+</pre>
+
+<p>
+Para chamar este programa no windows, selecione-o no menu ``iniciar''.
+
+</p><p>
+Uma vez carregado o programa, aparece o seguinte ``prompt''
+</p><pre>     ?-
+</pre>
+onde comandos prolog podem ser digitados.
+
+<p>
+</p><div align="CENTER">
+</div>
+<p>
+</p><div align="CENTER">
+    <img src="index_files/swipl.png">
+</div>
+<p>
+</p><div align="CENTER">
+</div>
+
+<p>
+Para sair do Prolog, utilize o comando <tt>halt.</tt>
+
+</p><p>
+
+</p><h2><a name="SECTION00042000000000000000">
+3.2 Instalação da biblioteca de prova automática</a>
+</h2>
+
+<p>
+Baixe da página da disciplina a biblioteca de lógica
+(<tt><a name="tex2html7" href="http://www.inf.furb.br/%7Ejomi/logica/tools">http://www.inf.furb.br/~jomi/logica/tools</a></tt>).
+Grave o arquivo em no seu diretório pessoal (H: ou
+/lp/home/&lt;username&gt;).
+
+</p><p>
+Descompacte o arquivo. No linux, em um terminal de comandos digite:
+
+</p><p>
+</p><pre>     cd
+     unzip logPropTool.zip
+     cd logPropTool
+</pre>
+
+<p>
+Seu diretório de trabalho deve ficar com um subdiretório chamado
+<tt>logPropTool</tt> onde estão os arquivos da biblioteca.
+
+</p><p>
+
+</p><h1><a name="SECTION00050000000000000000">
+4 Carga da biblioteca de lógica</a>
+</h1>
+
+<p>
+Para carregar um programa prolog no interpretador, pode-se utilizar o
+comando <tt>consult</tt> com o nome do arquivo como parâmetro (sem a
+extensão .pl, que é utilizada para programas Prolog):
+</p><pre>     ?- consult('resolution').
+</pre>
+o arquivo <tt>resolution.pl</tt> será carregado. O diretório corrente
+deve ser o diretório onde está este arquivo. Se esse não for o caso,
+informe o caminho completo para o arquivo 'resolution', por exemplo,
+no linux:
+<pre>     ?- consult('/lp/home/fulana/logica/resolution').
+</pre>
+ou no windows:
+<pre>     ?- consult('c:\\logica\\resolution').
+</pre>
+
+<p>
+
+</p><h1><a name="SECTION00060000000000000000">
+5 Utilitários</a>
+</h1>
+
+<p>
+Para escrever as fórmulas, os seguintes caracteres serão utilizados:
+
+</p><p>
+</p><div align="CENTER">
+<table border="1" cellpadding="3">
+<tbody><tr><th align="LEFT"><b>Símbolo</b></th>
+<th align="LEFT"><b>Caracteres</b></th>
+</tr>
+<tr><td align="LEFT">¬</td>
+<td align="LEFT"><tt>~</tt></td>
+</tr>
+<tr><td align="LEFT"><img src="index_files/img1.png" alt="$ \land$" height="13" width="15" align="BOTTOM" border="0"></td>
+<td align="LEFT"><tt>&amp;</tt></td>
+</tr>
+<tr><td align="LEFT"><img src="index_files/img2.png" alt="$ \lor$" height="13" width="15" align="BOTTOM" border="0"></td>
+<td align="LEFT"><tt>v</tt></td>
+</tr>
+<tr><td align="LEFT"><!-- MATH
+ $\rightarrow$
+ -->
+<img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"></td>
+<td align="LEFT"><tt>-&gt;</tt></td>
+</tr>
+<tr><td align="LEFT"><!-- MATH
+ $\leftrightarrow$
+ -->
+<img src="index_files/img4.png" alt="$ \leftrightarrow$" height="15" width="20" align="BOTTOM" border="0"></td>
+<td align="LEFT"><tt>&lt;-&gt;</tt></td>
+</tr>
+</tbody></table>
+</div>
+Os símbolos proposicionais devem ser escritos em minúsculo.
+
+<p>
+Exemplo: a fórmula <!-- MATH
+ $(P \lor Q) \leftrightarrow \lnot (Q \rightarrow R)$
+ -->
+(<i>P</i><img src="index_files/img2.png" alt="$ \lor$" height="13" width="15" align="BOTTOM" border="0"><i>Q</i>) <img src="index_files/img4.png" alt="$ \leftrightarrow$" height="15" width="20" align="BOTTOM" border="0"> ¬(<i>Q</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>R</i>) fica <tt>(p v q)
+  &lt;-&gt; (q -&gt; r)</tt>.
+
+</p><p>
+
+</p><h2><a name="SECTION00061000000000000000">
+5.1 Tabela verdade</a>
+</h2>
+
+<p>
+Para imprimir uma tabela verdade, utilize o comando
+<tt>truthTable(&lt;fórmula&gt;)</tt>. Exemplo:
+
+</p><p>
+</p><div align="CENTER">
+
+    <img src="index_files/truthTable.png">
+
+</div>
+
+<p>
+
+</p><h2><a name="SECTION00062000000000000000">
+5.2 Forma Normal Conjuntiva - FNC</a>
+</h2>
+
+<p>
+Para obter a FNC de uma fórmula, utilize o comando
+<tt>transCNF(&lt;fórmula&gt;)</tt>. Por exemplo, tente as seguintes
+transformações:
+</p><pre>?- transCNF(a -&gt; b).
+   .......&lt;aparece a FNC&gt;.....
+
+?- transCNF(a v (b &amp; (x &lt;-&gt; y))).
+   .......&lt;aparece a FNC&gt;.....
+</pre>
+
+<p>
+(Pesquise nas referências indicadas em sala e/ou na Internet o que é a FNC)
+
+</p><p>
+
+</p><h2><a name="SECTION00063000000000000000">
+5.3 Verificação de teorema</a>
+</h2>
+
+<p>
+Uma fórmula é um teorema se existir uma prova para ela sem necessidade
+de nenhuma premissa.  É portanto uma tautologia, contudo sua
+verificação é feita por meio de uma <i>prova</i> e não tabelas verdade.
+Para verificar se uma fórmula é teorema, utilize o comando
+<tt>theorem(&lt;fórmula&gt;)</tt>.
+
+</p><p>
+Utilizando o comando <tt>theorem</tt>, verifique se as seguintes
+fórmulas são teoremas:
+
+</p><p>
+
+</p><ul>
+<li><!-- MATH
+ $A \lor \lnot A$
+ -->
+<i>A</i><img src="index_files/img2.png" alt="$ \lor$" height="13" width="15" align="BOTTOM" border="0">¬<i>A</i>
+</li>
+<li><!-- MATH
+ $(A \rightarrow (B \rightarrow C)) \rightarrow ((A \rightarrow B) \rightarrow (A \rightarrow C))$
+ -->
+(<i>A</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> (<i>B</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>C</i>)) <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> ((<i>A</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>B</i>) <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> (<i>A</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>C</i>)).
+</li>
+<li><!-- MATH
+ $(A \land B) \rightarrow (A \lor C)$
+ -->
+(<i>A</i><img src="index_files/img1.png" alt="$ \land$" height="13" width="15" align="BOTTOM" border="0"><i>B</i>) <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> (<i>A</i><img src="index_files/img2.png" alt="$ \lor$" height="13" width="15" align="BOTTOM" border="0"><i>C</i>).
+</li>
+<li><!-- MATH
+ $(A \land B) \rightarrow (A \leftrightarrow B)$
+ -->
+(<i>A</i><img src="index_files/img1.png" alt="$ \land$" height="13" width="15" align="BOTTOM" border="0"><i>B</i>) <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> (<i>A</i> <img src="index_files/img4.png" alt="$ \leftrightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>B</i>).
+</li>
+</ul>
+
+<p>
+Qual a técnica de prova utilizada por este provador?
+Utiliza refutação? Utiliza resolução?
+
+</p><p>
+
+</p><h1><a name="SECTION00070000000000000000">
+6 Exemplo</a>
+</h1>
+
+<p>
+</p><blockquote>
+Dado que
+  </blockquote>
+<ul>
+<li>se hoje é domingo, então Marcos está feliz (<!-- MATH
+ $S \rightarrow H$
+ -->
+<i>S</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>H</i>)
+
+<p>
+
+</p></li><li>se Marcos está feliz, ela dará uma boa aula (<!-- MATH
+ $H \rightarrow G$
+ -->
+<i>H</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>G</i>)
+
+<p>
+
+</p></li><li>hoje é domindo (<i>S</i>)
+  
+</li>
+</ul>
+<p>
+</p><blockquote>Pode-se concluir que a aula será boa?
+</blockquote>
+<p>
+</p><ul>
+<li><!-- MATH
+ $S \rightarrow H, H \rightarrow G, S \vdash G$
+ -->
+<i>S</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>H</i>, <i>H</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>G</i>, <i>S</i> <img src="index_files/img5.png" alt="$ \vdash$" height="14" width="14" align="BOTTOM" border="0"> <i>G</i>
+</li>
+</ul>
+
+<p>
+Para verificar <!-- MATH
+ $\Gamma \vdash \phi$
+ -->
+<img src="index_files/img6.png" alt="$ \Gamma$" height="14" width="14" align="BOTTOM" border="0"> <img src="index_files/img5.png" alt="$ \vdash$" height="14" width="14" align="BOTTOM" border="0"> <img src="index_files/img7.png" alt="$ \phi$" height="30" width="14" align="MIDDLE" border="0"> com o provador automático, verifica-se
+se <!-- MATH
+ $\Gamma \rightarrow \phi$
+ -->
+<img src="index_files/img6.png" alt="$ \Gamma$" height="14" width="14" align="BOTTOM" border="0"> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <img src="index_files/img7.png" alt="$ \phi$" height="30" width="14" align="MIDDLE" border="0"> é teorema (denota-se por <!-- MATH
+ $\vdash \Gamma \rightarrow \phi$
+ -->
+<img src="index_files/img5.png" alt="$ \vdash$" height="14" width="14" align="BOTTOM" border="0"> <img src="index_files/img6.png" alt="$ \Gamma$" height="14" width="14" align="BOTTOM" border="0"> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <img src="index_files/img7.png" alt="$ \phi$" height="30" width="14" align="MIDDLE" border="0">). No
+exemplo do Marcos, deve se verificar se <!-- MATH
+ $((S \rightarrow H) \land (H \rightarrow G) \land S) \rightarrow G$
+ -->
+((<i>S</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>H</i>)<img src="index_files/img1.png" alt="$ \land$" height="13" width="15" align="BOTTOM" border="0">(<i>H</i> <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>G</i>)<img src="index_files/img1.png" alt="$ \land$" height="13" width="15" align="BOTTOM" border="0"><i>S</i>) <img src="index_files/img3.png" alt="$ \rightarrow$" height="15" width="20" align="BOTTOM" border="0"> <i>G</i> é
+um teorema.
+
+</p><p>
+</p><div align="CENTER">
+
+    <img src="index_files/provaMarcos.png">
+
+</div>
+
+<p>
+
+</p><h1><a name="SECTION00080000000000000000">
+7 Exercícios</a>
+</h1>
+
+<p>
+Verifique as conclusões dos exemplos dos Detetives, Socrates/Platão e
+Ana*, vistos em sala e disponíveis em
+<tt><a name="tex2html8" href="http://www.inf.furb.br/%7Ejomi/logica/slides/logProp.pdf">http://www.inf.furb.br/~jomi/logica/slides/logProp.pdf</a></tt>,
+utilizando a verificação automática de teoremas.
+
+</p><p>
+Caso se deseje guardar em um arquivo o resultado da execução, o
+SWI-Prolog pode ser executado informando o local para onde deve ser
+direcionado o resultado da execução. Por exemplo (repare que se está
+no prompt de comandos do sistema operacional e não do prolog):
+</p><pre>     pl -f resolution.pl -g 'theorem( (a &amp; (a -&gt; b)) -&gt; b ), halt' &gt; saida.txt
+</pre>
+No arquivo <tt>saida.txt</tt> está o resultado da prova. Se não for
+incluído <tt>&gt; saida.txt</tt> a saída do programa será na tela.
+
+<p>
+<br></p><hr>
+<address>
+Jomi Fred Hubner
+2005-05-02
+</address>
+</body></html>
