@@ -2,15 +2,17 @@
 :- dynamic p/0, a/0, b/0, c/0.
 
 %fatos
-%c.
+c.
+%a.
+%b.
 
 %regras
 p:-a,!,b.
 p:-c.
 
-a:-writef("tentando a"),nl.
+%a:-writef("tentando a"),nl.
 %b:-writef("tentando b"),nl.
-c:-writef("tentando c"),nl.
+%c:-writef("tentando c"),nl.
 
 % Ver http://www.cse.unsw.edu.au/~billw/cs9414/notes/prolog/intro.html#cut
 % e http://en.wikibooks.org/wiki/Prolog/Cuts_and_Negation

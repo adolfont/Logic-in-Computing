@@ -23,3 +23,7 @@ ser_reprovado:-faltar_aula,estudar_pouco.
 % >> deve retornar true.
 % ser_reprovado.
 % >> NÃO deve retornar true.
+% Testar assert(estudar_pouco).
+% e novamente ser_reprovado.
+% >> deve retornar true.
+
