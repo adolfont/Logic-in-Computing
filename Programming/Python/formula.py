@@ -14,16 +14,15 @@ class Formula:
 		return self.connective
 	def _get_connective(self):
 		return self.connective
-	def asString(self):
+	def __str__(self):
 		if self.connective == None:
 			return str(self.atom)
-		elif self.connective.asString() == "!":
-			return "%s%s" % (self.connective.asString(), self.subformulas[0].asString())
-		elif self.connective.asString() in ["&", "|", "->"]:
-			return "(%s%s%s)" % (self.subformulas[0].asString(), self.connective.asString(), self.subformulas[1].asString())
+		elif str(self.connective) == "!":
+			return "%s%s" % (self.connective, self.subformulas[0])
+		elif str(self.connective) in ["&", "|", "->"]:
+			return "(%s%s%s)" % (self.subformulas[0], self.connective, self.subformulas[1])
 		else:
 			pass
-
 		
 		
 		
