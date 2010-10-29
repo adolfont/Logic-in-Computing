@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 # formula.py - class for representing classical propositional logic formulas
 
 class Formula:
@@ -14,15 +14,16 @@ class Formula:
 		return self.connective
 	def _get_connective(self):
 		return self.connective
-	def __str__(self):
+	def asString(self):
 		if self.connective == None:
 			return str(self.atom)
-		elif str(self.connective) == "!":
-			return "%s%s" % (self.connective, self.subformulas[0])
-		elif str(self.connective) in ["&", "|", "->"]:
-			return "(%s%s%s)" % (self.subformulas[0], self.connective, self.subformulas[1])
+		elif self.connective.asString() == "!":
+			return "%s%s" % (self.connective.asString(), self.subformulas[0].asString())
+		elif self.connective.asString() in ["&", "|", "->"]:
+			return "(%s%s%s)" % (self.subformulas[0].asString(), self.connective.asString(), self.subformulas[1].asString())
 		else:
 			pass
+
 		
 		
 		
