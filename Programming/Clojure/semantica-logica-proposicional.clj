@@ -263,17 +263,45 @@
 
 ;; CONSEQUENCIA LOGICA
 
+(defn acrescenta-ands [premissas]
+  (if (= 1 (count premissas)) (first premissas)
+    (if (= 2 (count premissas))
+        [(first premissas) :and (second premissas)]
+        [(first premissas) :and (acrescenta-ands (rest premissas))]
+        )))
 
-(defn consequencia-logica [a b]
-  true)
+(defn consequencia-logica [premissas conclusao]
+;  (println "Premissas: " premissas)
+;  (println "Conclusao: " conclusao)
+;  (println "(not (vector? premissas)): " (not (vector? premissas)))
+  (if (not (vector? premissas))
+      (valida? [  [:not premissas]                    :or conclusao] )
+      (valida? [  [:not (acrescenta-ands premissas)]  :or conclusao] )
+  )
+)
+
+(defn equivalencia-logica [esquerda direita]
+      (valida? [[ [:not esquerda] :or direita] :and [ [:not direita] :or esquerda] ] )
+)
+
 
 (defn roda-testes-consequencia-logica[]
    (println "Testes Consequencia Logica")
+;   (let [premissas '[:p [:p :implies :q]] conclusao :q]
+;     (println [  [:not (acrescenta-ands premissas)]  :or conclusao])
+;     (println (valida? [  [:not (acrescenta-ands premissas)]  :or conclusao] ))
+;     (println (consequencia-logica '[:p [:p :implies :q]] :q))
+;    )
    (println
    (if
       (and
+         (= (acrescenta-ands '[:p [:p :implies :q]]) '[:p :and [:p :implies :q]] )
+         (= (acrescenta-ands '[:p [:p :implies :q] :r]) '[:p :and [[:p :implies :q] :and :r]] )
          (= (consequencia-logica :p :p) true )
          (= (consequencia-logica :p :q) false )
+         (= (consequencia-logica '[:p [:p :implies :q]] :q) true )
+         (= (equivalencia-logica :p :p) true )
+        (= (equivalencia-logica [:p :and :q] [:p :and [:q :and :p]]) true )
         )
       "Passou em todos!"
       "Falhou em ao menos um!"
