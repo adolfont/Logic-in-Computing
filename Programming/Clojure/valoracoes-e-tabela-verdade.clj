@@ -1,3 +1,5 @@
+;; Versão anterior - NÃO USAR
+
 ;; Operadores Lógicos
 (defn land [lvalue-1 lvalue-2]
    (* lvalue-1 lvalue-2)
