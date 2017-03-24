@@ -37,16 +37,17 @@
 
 ;; Testes
 ;; Lembrar de sempre usar o ":"
-(println (valora :p '{:p 1}))
-(println (valora :p '{:p 0}))
-(println (valora [:p :or [:not :p]] '{:p 0}))
-(println (valora [:p :or [:not :p]] '{:p 1}))
-(println (valora [:p :and [:not :p]] '{:p 0}))
-(println (valora [:p :and [:not :p]] '{:p 1}))
-(println (valora [:p :and [:not :q]] '{:p 1, :q 0}))
-(println (valora [:p :or [:not :q]] '{:p 0, :q 1}))
-(println (valora [:r :implies [:p :or [:not :q]]] '{:p 0, :q 1, :r 1}))
-
+(defn testes-com-println-de-valora[]
+  (println (valora :p '{:p 1}))
+  (println (valora :p '{:p 0}))
+  (println (valora [:p :or [:not :p]] '{:p 0}))
+  (println (valora [:p :or [:not :p]] '{:p 1}))
+  (println (valora [:p :and [:not :p]] '{:p 0}))
+  (println (valora [:p :and [:not :p]] '{:p 1}))
+  (println (valora [:p :and [:not :q]] '{:p 1, :q 0}))
+  (println (valora [:p :or [:not :q]] '{:p 0, :q 1}))
+  (println (valora [:r :implies [:p :or [:not :q]]] '{:p 0, :q 1, :r 1}))
+)
 
 
 (defn inteiro-para-binario [valor qtde-digitos]
@@ -114,9 +115,9 @@
 )
 
 
-(println (tabela-verdade '[:p :and :q] '[:p :q]))
+;(println (tabela-verdade '[:p :and :q] '[:p :q]))
 
-(println (tabela-verdade '[:p :implies [:p :and :q]] '[:p :q]))
+;(println (tabela-verdade '[:p :implies [:p :and :q]] '[:p :q]))
 
 
 ;;;; SUBFORMULAS
@@ -270,38 +271,30 @@
         [(first premissas) :and (acrescenta-ands (rest premissas))]
         )))
 
-(defn consequencia-logica [premissas conclusao]
-;  (println "Premissas: " premissas)
-;  (println "Conclusao: " conclusao)
-;  (println "(not (vector? premissas)): " (not (vector? premissas)))
+(defn consequencia-logica? [premissas conclusao]
   (if (not (vector? premissas))
       (valida? [  [:not premissas]                    :or conclusao] )
       (valida? [  [:not (acrescenta-ands premissas)]  :or conclusao] )
   )
 )
 
-(defn equivalencia-logica [esquerda direita]
+(defn equivalencia-logica? [esquerda direita]
       (valida? [[ [:not esquerda] :or direita] :and [ [:not direita] :or esquerda] ] )
 )
 
 
 (defn roda-testes-consequencia-logica[]
    (println "Testes Consequencia Logica")
-;   (let [premissas '[:p [:p :implies :q]] conclusao :q]
-;     (println [  [:not (acrescenta-ands premissas)]  :or conclusao])
-;     (println (valida? [  [:not (acrescenta-ands premissas)]  :or conclusao] ))
-;     (println (consequencia-logica '[:p [:p :implies :q]] :q))
-;    )
    (println
    (if
       (and
          (= (acrescenta-ands '[:p [:p :implies :q]]) '[:p :and [:p :implies :q]] )
          (= (acrescenta-ands '[:p [:p :implies :q] :r]) '[:p :and [[:p :implies :q] :and :r]] )
-         (= (consequencia-logica :p :p) true )
-         (= (consequencia-logica :p :q) false )
-         (= (consequencia-logica '[:p [:p :implies :q]] :q) true )
-         (= (equivalencia-logica :p :p) true )
-        (= (equivalencia-logica [:p :and :q] [:p :and [:q :and :p]]) true )
+         (= (consequencia-logica? :p :p) true )
+         (= (consequencia-logica? :p :q) false )
+         (= (consequencia-logica? '[:p [:p :implies :q]] :q) true )
+         (= (equivalencia-logica? :p :p) true )
+        (= (equivalencia-logica? [:p :and :q] [:p :and [:q :and :p]]) true )
         )
       "Passou em todos!"
       "Falhou em ao menos um!"
@@ -309,3 +302,56 @@
 )
 
 (roda-testes-consequencia-logica)
+
+;;; FORMULA BEM FORMADA
+
+(defn formula-bem-formada? [formula])
+
+(defn formula-bem-formada-com-not? [formula]
+  (and (vector? formula) (= :not (first formula)) (= (count formula) 2)
+       (formula-bem-formada? (second formula)))
+)
+
+(defn formula-bem-formada-com-conectivo-binario? [formula]
+  (if (and (vector? formula) (some (hash-set (second formula)) '(:and :or :implies))
+        (= (count formula) 3)
+       (formula-bem-formada? (first formula))
+       (formula-bem-formada? (nth formula 2))
+       )
+       true
+       false)
+)
+
+(defn formula-bem-formada? [formula]
+  (if (some #{formula} '(:not :and :or :implies))
+      false
+      (if (or (keyword? formula)
+          (formula-bem-formada-com-not? formula)
+          (formula-bem-formada-com-conectivo-binario? formula)
+          )
+          true
+          false)
+  )
+)
+
+(defn roda-testes-formula-bem-formada[]
+   (println "Testes Formula Bem Formada")
+   (println
+   (if
+      (and
+        (= (formula-bem-formada? :p) true )
+        (= (formula-bem-formada? [:p :q]) false )
+        (= (formula-bem-formada? :not) false )
+        (= (formula-bem-formada? [:not :p]) true )
+        (= (formula-bem-formada? [:not :p :q]) false )
+        (= (formula-bem-formada? [:not [:not :p]]) true )
+        (= (formula-bem-formada? [:p :and :q]) true )
+        (= (formula-bem-formada? [[:not :p] :and [:q :or :r]]) true )
+        (= (formula-bem-formada? [[:bububu :p] :and [:q :or :r]]) false )
+        )
+      "Passou em todos!"
+      "Falhou em ao menos um!"
+    ))
+)
+
+(roda-testes-formula-bem-formada)
